@@ -1,0 +1,58 @@
+project_name: 'pathology_distill'
+
+save_root: '/scratch/timnhaoprj/ycaibt/experiments/PathDistill/'
+max_iterations: 100000
+print_freq: 100
+save_freq: 1000
+gpu: null
+world_size: 4
+dist_url: 'tcp://127.0.0.1:23458'
+dist_backend: 'nccl'
+seed: null
+
+dataloader:
+  data_root: '/scratch/timnhaoprj/ycaibt/all_image_paths.lmdb'
+  batch_size: 512  # global bs=512*4=2048
+  num_workers: 12
+
+model:
+  teacher:
+    virchow2:
+      output_dim: 2560
+      weight: 0.4
+    h-optimus-1:
+      output_dim: 1536
+      weight: 0.3
+    uni2:
+      output_dim: 1536
+      weight: 0.3
+  student:
+    name: 'LiteFM-L'
+    proj_dim: 1024
+
+loss:
+  type: 'L1'
+
+optimizer:
+  type: "AdamW"
+  learning_rate: !!float 2e-3
+  weight_decay: 0.05
+  betas: [0.9, 0.999]
+  eps: !!float 1e-8
+  grad_clip: !!float 1.0  # 梯度裁剪
+
+lr_scheduler:
+  type: "cosine"
+  t_initial: 100000  # 总步数
+  lr_min: !!float 1e-5  # 最小学习率
+  warmup_lr: !!float 1e-6  # 预热初始学习率
+  warmup_steps: 10000  # 预热步数
+
+transform:
+  custom: 'virchow2'
+  default:
+    resize:
+      input_size: 224
+    normalize:
+      mean: [0.485, 0.456, 0.406]
+      std: [0.229, 0.224, 0.225]

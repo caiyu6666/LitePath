@@ -1,0 +1,31 @@
+{
+    "Nanfang_primary_metastatic": "0_2000",
+    "Nanfang_lung_finegrained": "0_1000",
+    "Nanfang-Lung-NSCLC": "100_1900",
+    "Nanfang-Lung-Frozen-LymphNodeMetastasis": "100_1900",
+    "Nanfang_lung_P63": "0_4000",
+
+    "ZJ1-C1_Breast_TNM-N": "50_950",
+    "ZJ1-C1_Breast_pTNM": "0_4000",
+    "ZJ1-C1_Breast_MolSubtype": "1000_0",
+    "ZJ1-C1_Breast_IHC-AR": "100_3900",
+    "ZJ1-C1_Breast_IHC-ER": "0_1000",
+    "ZJ1-C1_Breast_IHC-PR": "50_1950",
+    "ZJ1-C1_Breast_IHC-HER2": "0_2000",
+    "ZJ1-C1_Breast_IHC-CK5": "0_1000",
+
+    "NanFang_Gastric_Grade": "100_2900",
+    "NanFang_Gastric_PathSubtype": "0_3000",
+    "NanFang_Gastric_TNM-N": "0_1000",
+    "NanFang_Gastric_Perineural": "0_1000",
+    "NanFang_Gastric_Vascular": "0_2000",
+    "PWH_Stomach_Biopsy_Normal_Abnormal": "0_1000",
+    "PWH_Stomach_Biopsy_Intestinal_metaplasia": "0_1000",
+    "NanFang_Gastric_IHC-HER-2": "50_3950",
+    "NanFang_Gastric_IHC-S-100": "0_2000",
+
+    "ARGO-TNM_N0_N+": "0_1000",
+    "ARGO-TNM_T1+T2_T3+T4": "0_2000",
+    "ARGO-TNM_T1_T4": "0_1000",
+    "argo_colon_deep_cms": "0_2000"
+}
