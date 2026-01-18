@@ -184,7 +184,7 @@ bash scripts/aps.sh
 
 ## Acknowledgements
 
-The work was built on top of repositories including: [PrePath](https://github.com/birkhoffkiki/PrePATH), [mSTAR](https://github.com/Innse/mSTAR), [GPFM](https://github.com/birkhoffkiki/GPFM). We thank the original authors for their excellent work!
+The work was built on top of repositories including: [ASlide](https://github.com/MrPeterJin/ASlide), [PrePath](https://github.com/birkhoffkiki/PrePATH), [mSTAR](https://github.com/Innse/mSTAR), [GPFM](https://github.com/birkhoffkiki/GPFM). We thank the original authors for their excellent work!
 
 
 
