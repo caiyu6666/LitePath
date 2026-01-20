@@ -9,16 +9,13 @@ We present **LitePath**, a framework designed to mitigate model over-parameteriz
 ## Features
 
 - ⚡ **High Efficiency in Computational Pathology**
-
   **28x smaller** and **105x faster** compared to Virchow2.
 
 - 🎯 **State-of-the-Art Accuracy**
-
   Deliver performance on par with leading pathology foundation models, maintaining a **99.71% average AUC retention** compared to Virchow2.
 
 - 🌍 **Friendly for Edge Deployment**
-
-  Easily deployable on various edge devices, including **NVIDIA Jetson Orin Nano Super**, **personal computers**, and **mobile phones**.
+  Easily deployable on various edge devices, such as NVIDIA Jetson Orin Nano Super with **25W rated power**.
 
 
 
@@ -26,6 +23,8 @@ We present **LitePath**, a framework designed to mitigate model over-parameteriz
 
 
 <p align="center"><img width=100% src="./figs/rank_all_horizon.svg"></p>
+
+
 
 ## Project Structure
 
@@ -44,6 +43,8 @@ LitePath/
 - Python==3.10
 - PyTorch==2.3.1
 - CUDA==12.9
+
+- [ASlide](https://github.com/MrPeterJin/ASlide)==1.5.4
 
 
 
@@ -178,15 +179,13 @@ bash scripts/aps.sh
 | LiteVirchow2             | ViT-S        | 22.06M       | Virchow2                    |
 | LiteFM-S                 | ViT-Ti       | 5.72M        | Virchow2, H-Optimus-1, UNI2 |
 
-
+<p align="center"><img width=100% src="./figs/lite_family_rank.svg"></p>
 
 
 
 ## Acknowledgements
 
 The work was built on top of repositories including: [ASlide](https://github.com/MrPeterJin/ASlide), [PrePath](https://github.com/birkhoffkiki/PrePATH), [mSTAR](https://github.com/Innse/mSTAR), [GPFM](https://github.com/birkhoffkiki/GPFM). We thank the original authors for their excellent work!
-
-
 
 If any questions, feel free to email [Yu Cai](mailto:yu.cai@connect.ust.hk)
 
