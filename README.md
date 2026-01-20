@@ -8,13 +8,13 @@ We present **LitePath**, a framework designed to mitigate model over-parameteriz
 
 ## Features
 
-- ⚡ **High Efficiency in Computational Pathology**
+- ⚡ **High Efficiency in Computational Pathology**</br>
   **28x smaller** and **105x faster** compared to Virchow2.
 
-- 🎯 **State-of-the-Art Accuracy**
+- 🎯 **State-of-the-Art Accuracy**</br>
   Deliver performance on par with leading pathology foundation models, maintaining a **99.71% average AUC retention** compared to Virchow2.
 
-- 🌍 **Friendly for Edge Deployment**
+- 🌍 **Friendly for Edge Deployment**</br>
   Easily deployable on various edge devices, such as NVIDIA Jetson Orin Nano Super with **25W rated power**.
 
 
