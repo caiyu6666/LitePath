@@ -6,6 +6,7 @@ from multiprocessing.pool import Pool
 import glob
 import argparse
 from Aslide import Slide
+from concurrent.futures import ThreadPoolExecutor
 
 
 def get_wsi_handle(wsi_path):
@@ -64,6 +65,80 @@ def read_images(arg):
         return
     os.rename(save_path+'.temp', save_path)
     print(f"{wsi_path} finished!")
+
+
+def process_patch(wsi_handle, x, y, level, size):
+    """负责读取和处理单个 Patch"""
+    try:
+        img = wsi_handle.read_region((x, y), level, (size, size)).convert('RGB')
+
+        with io.BytesIO() as buffer:
+            img.save(buffer, format='JPEG')
+            jpeg_bytes = buffer.getvalue()
+
+        return np.frombuffer(jpeg_bytes, dtype=np.uint8)  # 返回 JPEG 编码数据
+    except Exception as e:
+        print(f"Error processing patch at ({x}, {y}): {e}")
+        return None
+
+
+def read_images_parallel(args, num_workers=6):
+    h5_path, save_path, wsi_path = args
+    if wsi_path is None:
+        return
+    if os.path.exists(save_path):
+        print(f'{save_path} already exists, skipping...')
+        return
+
+    print('Processing:', h5_path, wsi_path, flush=True)
+    try:
+        h5 = h5py.File(h5_path)
+    except:
+        print(f'{h5_path} is not readable....')
+        return
+
+    _num = len(h5['coords'])
+    coors = h5['coords']
+    level = h5['coords'].attrs['patch_level']
+    size = h5['coords'].attrs['patch_size']
+
+    wsi_handle = get_wsi_handle(wsi_path)
+    try:
+        with h5py.File(save_path+'.temp', 'w') as h5_file:
+            # 创建变长数据集存储JPEG字节流
+            patches_dataset = h5_file.create_dataset(
+                'patches',
+                shape=(_num,),
+                maxshape=(None,),
+                dtype=h5py.vlen_dtype(np.uint8),  # 变长字节数组
+                compression='gzip',
+                compression_opts=6
+            )
+
+            # 使用线程池并行处理
+            with ThreadPoolExecutor(max_workers=num_workers) as executor:
+                futures = []
+                for i, (x, y) in enumerate(coors):
+                    # 提交每个 Patch 处理任务
+                    futures.append(executor.submit(process_patch, wsi_handle, x, y, level, size))
+                
+                # 收集结果并按顺序写入 HDF5 文件
+                results = []
+                for future in futures:
+                    jpeg_bytes = future.result()  # 注意：按任务顺序获取结果
+                    results.append(jpeg_bytes)
+
+                # 将结果合并并一次性写入 HDF5，避免 HDF5 并发问题
+                valid_results = [r for r in results if r is not None]  # 过滤 None
+                patches_dataset.resize(len(valid_results), axis=0)
+                patches_dataset[:] = valid_results
+
+    except Exception as e:
+        print(f'{wsi_path} failed to process: {e}')
+        return
+    os.rename(save_path+'.temp', save_path)
+    print(f"{wsi_path} finished!")
+    
 
 def get_wsi_path(wsi_root, h5_files, wsi_format):
     kv = {}
