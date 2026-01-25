@@ -4,39 +4,10 @@ import os
 
 
 SPLIT_CSV = {
-    # lung
     'Nanfang_primary_metastatic': '/jhcnas4/Pathology/code/PathTasks/data/lung/primary_meta/data/Nanfang_primary_metastatic.xlsx',
     'Nanfang-Lung-NSCLC': '/jhcnas4/Pathology/code/PathTasks/data/lung/NSCLC/data/Nanfang_lung_NSCLC_VALID.xlsx',
-    'Nanfang_lung_P63': '/jhcnas4/Pathology/code/PathTasks/data/lung/IHC_NF_P63/data/Nanfang_lung_P63_merged_VALID_CASE.xlsx',
-    'Nanfang_lung_finegrained': '/jhcnas4/Pathology/code/PathTasks/data/lung/finegrained_classification/data/Nanfang_lung_finegrained_cleaned.xlsx',
-    'Nanfang-Lung-Frozen-LymphNodeMetastasis': '/jhcnas4/Pathology/code/PathTasks/data/lung/NF_Lymph_Metastasis_Frozen/data/Nanfang_lung_LymphNodeMetastasis_Frozen.xlsx',
 
-    # breast
-    'ZJ1-C1_Breast_TNM-N': '/jhcnas4/Pathology/code/PathTasks/data/breast/TNM-N/output/ZJ1-C1_Breast_TNM-N.xlsx',
-    'ZJ1-C1_Breast_pTNM': '/jhcnas4/Pathology/code/PathTasks/data/breast/pTNM/data/ZJ1-C1_Breast_pTNM.xlsx',
-    'ZJ1-C1_Breast_MolSubtype': '/jhcnas4/Pathology/code/PathTasks/data/breast/Molecular_Subtype/data/ZJ1-C1_Breast_MolSubtype.xlsx',
-    'ZJ1-C1_Breast_IHC-AR': '/jhcnas4/Pathology/code/PathTasks/data/breast/IHC-AR/output/ZJ1-C1_Breast_IHC-AR.xlsx',
-    'ZJ1-C1_Breast_IHC-ER': '/jhcnas4/Pathology/code/PathTasks/data/breast/IHC-ER/output/ZJ1-C1_Breast_IHC-ER.xlsx',
-    'ZJ1-C1_Breast_IHC-PR': '/jhcnas4/Pathology/code/PathTasks/data/breast/IHC-PR/data/ZJ1-C1_Breast_IHC-PR.xlsx',
-    'ZJ1-C1_Breast_IHC-HER2': '/jhcnas4/Pathology/code/PathTasks/data/breast/IHC-HER2/output/ZJ1-C1_Breast_IHC-HER2.xlsx',
-    'ZJ1-C1_Breast_IHC-CK5': '/jhcnas4/Pathology/code/PathTasks/data/breast/IHC-CK5/data/ZJ1-C1_Breast_IHC-CK5.xlsx',
-
-    # Gastric
-    'PWH_Stomach_Biopsy_Normal_Abnormal': '/jhcnas4/Pathology/code/PathTasks/data/gastric/Normal_or_Abnormal/data/PWH_Stomach_Biopsy_Normal_Abnormal.xlsx',
-    'PWH_Stomach_Biopsy_Intestinal_metaplasia': '/jhcnas4/Pathology/code/PathTasks/data/gastric/Intestinal_metaplasia/data/PWH_Stomach_Biopsy_Intestinal_metaplasia.xlsx',
-    'NanFang_Gastric_Grade': '/jhcnas4/Pathology/code/PathTasks/data/gastric/Grade/output/NanFang_Gastric_Grade.xlsx',
-    'NanFang_Gastric_IHC-HER-2': '/jhcnas4/Pathology/code/PathTasks/data/gastric/IHC-HER-2/output/NanFang_Gastric_IHC-HER-2.xlsx',
-    'NanFang_Gastric_IHC-S-100': '/jhcnas4/Pathology/code/PathTasks/data/gastric/IHC-S-100/data/NanFang_Gastric_IHC-S-100.xlsx',
-    'NanFang_Gastric_PathSubtype': '/jhcnas4/Pathology/code/PathTasks/data/gastric/PathSubtype/data/NanFang_Gastric_PathSubtype.xlsx',
-    'NanFang_Gastric_Perineural': '/jhcnas4/Pathology/code/PathTasks/data/gastric/Perineural/data/NanFang_Gastric_Perineural.xlsx',
-    'NanFang_Gastric_Vascular': '/jhcnas4/Pathology/code/PathTasks/data/gastric/Vascular/data/NanFang_Gastric_Vascular.xlsx',
-    'NanFang_Gastric_TNM-N': '/jhcnas4/Pathology/code/PathTasks/data/gastric/TNM-N/data/NanFang_Gastric_TNM-N.xlsx',
-
-    # Colon
-    'ARGO-TNM_N0_N+': '/jhcnas4/Pathology/code/PathTasks/data/colon/TNM_N/data/ARGO-TNM_N0_N+.xlsx',
-    'ARGO-TNM_T1+T2_T3+T4': '/jhcnas4/Pathology/code/PathTasks/data/colon/TNM_T/data/ARGO-TNM_T1+T2_T3+T4.xlsx',
-    'ARGO-TNM_T1_T4': '/jhcnas4/Pathology/code/PathTasks/data/colon/TNM_T/data/ARGO-TNM_T1_T4.xlsx',
-    'argo_colon_deep_cms': '/jhcnas4/Pathology/code/PathTasks/data/colon/Deep_CMS/data/argo_colon_deep_cms.xlsx',
+    # ......
 }
 
 
