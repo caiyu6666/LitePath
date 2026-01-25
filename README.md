@@ -1,6 +1,6 @@
 
 
-![header](https://capsule-render.vercel.app/api?type=waving&height=150&color=gradient&text=LitePath:-nl-%20&reversal=false&fontAlign=13&desc=A%20Scalable%20Foundation%20Model%20Framework%20for%20Efficient%20Computational%20Pathology&fontSize=45&descSize=20&fontAlignY=35&descAlignY=50&descAlign=45&textBg=false)
+![header](https://capsule-render.vercel.app/api?type=waving&height=150&color=gradient&text=LitePath:&desc=A%20Scalable%20Framework%20for%20Efficient%20Computational%20Pathology&descAlign=35&fontSize=45&fontAlign=13&fontAlignY=30&descAlignY=50)
 
 We present **LitePath**, a framework designed to mitigate model over-parameterization and patch‑level redundancy. LitePath integrates **LiteFM**, a compact model distilled from three large PFMs (Virchow2, H-Optimus-1 and UNI2) using 190 million patches, and the **Adaptive Patch Selector (APS)**, a lightweight modular component for task-specific patch selection. 
 
