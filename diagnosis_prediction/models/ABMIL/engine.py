@@ -6,8 +6,6 @@ import glob
 import time
 import copy
 
-from tensorboardX import SummaryWriter
-
 from typing import Dict
 from torchmetrics import Metric, MetricCollection
 from torchmetrics.wrappers.bootstrapping import BootStrapper
@@ -41,24 +39,9 @@ class Engine(object):
         self.att_score_dir = att_score_dir
         self.att_score = {}
 
-
     def learning(self, model, loaders, criterion, optimizer, scheduler):
         if torch.cuda.is_available():
             model = model.cuda()
-        # if self.args.resume is not None:
-        #     if os.path.isfile(self.args.resume):
-        #         print("=> loading checkpoint '{}'".format(self.args.resume))
-        #         checkpoint = torch.load(self.args.resume)
-        #         self.val_scores = checkpoint["val_scores"]
-        #         self.best_epoch = checkpoint["best_epoch"]
-        #         if "test_score" in checkpoint:
-        #             self.test_scores = checkpoint["test_scores"]
-        #         model.load_state_dict(checkpoint["state_dict"])
-        #         print("=> loaded checkpoint (val score: {})".format(checkpoint["val_score"]["Macro_AUC"]))
-        #         if self.test_scores is not None:
-        #             print("=> loaded checkpoint (test score: {})".format(checkpoint["test_score"]["Macro_AUC"]))
-        #     else:
-        #         print("=> no checkpoint found at '{}'".format(self.args.resume))
 
         if self.args.evaluate:
             self.find_best_ckpt()
@@ -137,17 +120,7 @@ class Engine(object):
                         }
                     self.best_outputs = outputs
                     print("** update best checkpoint at epoch {}".format(self.best_epoch))
-                    # self.save_checkpoint(
-                    #     {
-                    #         "best_epoch": self.best_epoch,
-                    #         "state_dict": model.state_dict(),
-                    #         "val_scores": self.val_scores,
-                    #         # "test_scores": self.test_scores,
-                    #         'test_scores': results,
-                    #     }
-                    # )
-                    # self.save_outputs(outputs)
-            # print(" *** best model {}".format(self.filename_best))
+
             print(f"** best epoch: {self.best_epoch}, \n best val scores: {self.val_scores}, \n best test scores: {self.test_scores}")
             scheduler.step()
             print(">>>")

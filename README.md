@@ -40,21 +40,60 @@ LitePath/
 
 ## Requirements
 
-- Python==3.10
-- PyTorch==2.3.1
-- CUDA==12.9
+### System Requirements
 
-- [ASlide](https://github.com/MrPeterJin/ASlide)==1.5.4
+- Python >= 3.10
+- CUDA >= 12.1 (12.9 recommended)
+
+### Installation
+
+**1. Install PyTorch with CUDA support:**
+
+```bash
+pip install torch==2.3.1 torchvision==0.18.1 --index-url https://download.pytorch.org/whl/cu121
+```
+
+> **Note:** For CUDA 12.9, use `cu121` or `cu124` index (backward compatible)
+
+**2. Install other dependencies:**
+
+```bash
+pip install -r requirements.txt
+```
+
+### Main Dependencies
+
+- **PyTorch Ecosystem**: torch==2.3.1, torchvision==0.18.1
+- **Deep Learning**: timm==1.0.15, pytorch-lightning==2.4.0, torchmetrics==1.6.0
+- **Computer Vision**: opencv-python==4.10.0.84, Pillow==9.5.0
+- **WSI Processing**: [ASlide](https://github.com/MrPeterJin/ASlide) (from GitHub)
+- **Data Processing**: numpy==2.2.6, pandas==2.2.3, h5py==3.13.0, lmdb>=1.4.0
+- **Machine Learning**: scikit-learn==1.7.0, scipy==1.14.1
+- **Experiment Tracking**: wandb==0.18.7
+- **Hugging Face**: huggingface-hub==0.36.0, transformers==4.50.3
+
+For the complete list of dependencies, see [requirements.txt](./requirements.txt).
 
 
 
 ## Quick Start
 
-**Navigate to the `inference` directory:**
+### Download and extract required files
+
+Download the checkpoint files and examples, then extract them into the `inference/` directory:
 
 ```bash
+# Download checkpoints
+wget https://github.com/caiyu6666/LitePath/releases/download/v1.0.0/ckpts.zip
+# Download examples
+wget https://github.com/caiyu6666/LitePath/releases/download/v1.0.0/examples.zip
+
+# Extract to inference/ directory
 cd inference/
+unzip ../ckpts.zip
+unzip ../examples.zip
 ```
+
 
 ### Lightweight Patch Feature Extractor
 

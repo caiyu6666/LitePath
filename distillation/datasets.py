@@ -3,14 +3,14 @@ import json
 import os
 import cv2
 from PIL import Image
-from torch.utils.data import Sampler
+from torch.utils.data import Sampler, Dataset
 import lmdb
 import numpy as np
 import hashlib
 import zlib
 
 
-class FeatureExtractDataset(torch.utils.data.Dataset):
+class FeatureExtractDataset(Dataset):
     def __init__(self, root, transform_dict):
         super(FeatureExtractDataset, self).__init__()
 
@@ -57,7 +57,7 @@ class FeatureExtractDataset(torch.utils.data.Dataset):
             return p
 
 
-class FastPathologyDataset(torch.utils.data.Dataset):
+class FastPathologyDataset(Dataset):
     teacher_features_path = {'virchow2': '/scratch/timnhaoprj/ycaibt/pretrain_features/virchow2.lmdb',
                              'h-optimus-1': '/scratch/timnhaoprj/ycaibt/pretrain_features/h-optimus-1.lmdb',
                              'uni2': '/scratch/slcompath/ycaibt/pretrain_features/uni2.lmdb'}
