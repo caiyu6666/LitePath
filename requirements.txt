@@ -1,0 +1,55 @@
+# Installation Instructions:
+# 1. First install PyTorch with CUDA support (required for CUDA 12.9):
+#    pip install torch==2.3.1 torchvision==0.18.1 --index-url https://download.pytorch.org/whl/cu121
+#    Note: For CUDA 12.9, use cu121 or cu124 index (backward compatible)
+# 2. Then install other dependencies:
+#    pip install -r requirements.txt
+
+# Core PyTorch
+# Note: These will install CPU-only versions if installed directly.
+# Install PyTorch with CUDA using the command above before installing other packages.
+torch==2.3.1
+torchvision==0.18.1
+
+# Deep Learning & Models
+timm==1.0.15
+pytorch-lightning==2.4.0
+torchmetrics==1.6.0
+lightning-utilities==0.11.9
+
+# Computer Vision & Image Processing
+opencv-python==4.10.0.84
+Pillow==9.5.0
+imageio==2.36.1
+
+# WSI Processing
+ASlide @ git+https://github.com/MrPeterJin/ASlide.git
+
+# Data Processing
+numpy==2.2.6
+pandas==2.2.3
+h5py==3.13.0
+lmdb>=1.4.0
+
+# Machine Learning
+scikit-learn==1.7.0
+scipy==1.14.1
+
+# Configuration & Utilities
+PyYAML>=6.0
+tqdm>=4.66.0
+pathos>=0.3.0
+
+# Hugging Face (for teacher models)
+huggingface-hub==0.36.0
+transformers==4.50.3
+
+# Experiment Tracking
+wandb==0.18.7
+
+# Visualization (optional, for notebooks)
+matplotlib==3.9.2
+
+# Git dependencies
+conch @ git+https://github.com/Mahmoodlab/CONCH.git@141cc09c7d4ff33d8eda562bd75169b457f71a62
+open-clip-torch @ git+https://github.com/mlfoundations/open_clip.git@a87f11eaf354000d2736580855ae0d9b76ad2a22
