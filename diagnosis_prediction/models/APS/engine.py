@@ -6,8 +6,6 @@ import glob
 import time
 import copy
 
-from tensorboardX import SummaryWriter
-
 from typing import Dict
 from torchmetrics import Metric, MetricCollection
 from torchmetrics.wrappers.bootstrapping import BootStrapper
@@ -39,10 +37,6 @@ class Engine(object):
         self.best_ckpt = None
         self.early_stop = 0
         self.att_score = {}
-
-        # self.att_score_dir = att_score_dir
-        # self.pred_att_score_dir = pred_att_score_dir
-        # self.selected_feat_dir = selected_feat_dir
 
     def learning(self, model, loaders, criterion, optimizer, scheduler):
         print(">>>")
@@ -279,16 +273,10 @@ class Engine(object):
             if k in outputs_key.keys():
                 print(f"==== {k} already exists. Skip...")
                 continue
-            # file_name = os.path.join(save_dir, f"outputs_val_{mode}{k}.pkl")
-            # if os.path.exists(file_name):
-            #     print(f"==== {file_name} already exists. Skip...")
-            #     continue
+
             scores, outputs = self.evaluate_topk_one_loader(mil_model, loader, k=k, mode=mode, key=key)
             print(f"{mode}{k} {key} scores: {scores}")
             outputs_key[k] = outputs
-            # with open(file_name, "wb") as f:
-            #     pickle.dump(val_outputs, f)
-            # print(f"Save val_outputs to {file_name}")
         
         with open(file_name, "wb") as f:
             pickle.dump(outputs_key, f)
@@ -377,9 +365,6 @@ class Engine(object):
                     pred_att_score.update(external_pred_att_score)
             torch.save(pred_att_score, pred_score_path)  # save full pred_att_score
             print(f"=> save pred_att_score to {pred_score_path}")
-
-        if score_only:
-            return
 
     def infer_pred_score_one_loader(self, model, data_loader, split='test'):
         print(f"=> infer {split} loader pred_score ... ")

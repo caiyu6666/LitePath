@@ -122,7 +122,6 @@ def read_images_parallel(args, num_workers=6):
                     # 提交每个 Patch 处理任务
                     futures.append(executor.submit(process_patch, wsi_handle, x, y, level, size))
                 
-                # 收集结果并按顺序写入 HDF5 文件
                 results = []
                 for future in futures:
                     jpeg_bytes = future.result()  # 注意：按任务顺序获取结果
