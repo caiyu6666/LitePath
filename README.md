@@ -6,7 +6,7 @@ We present **LitePath**, a framework designed to mitigate model over-parameteriz
 
 
 <div align="center">
-  <video src="./video/demo_LitePath.mp4" width="70%" poster=""> </video>
+  <video src="https://github.com/user-attachments/assets/ca65a19b-c491-4ff2-b851-6dc095baa0ce" width="70%" poster=""> </video>
 </div>
 
 
