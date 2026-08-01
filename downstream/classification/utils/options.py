@@ -1,21 +1,17 @@
 import argparse
-import socket
-import os
 
 
 SPLIT_CSV = {
-    'Nanfang_primary_metastatic': '/jhcnas4/Pathology/code/PathTasks/data/lung/primary_meta/data/Nanfang_primary_metastatic.xlsx',
-    'Nanfang-Lung-NSCLC': '/jhcnas4/Pathology/code/PathTasks/data/lung/NSCLC/data/Nanfang_lung_NSCLC_VALID.xlsx',
-
+    # Public
+    "BRACS-3": "dataset_csv/BRACS-3.csv",
+    "BRACS-7": "dataset_csv/BRACS-7.csv",
+    "CAMELYON": "dataset_csv/Camelyon.csv",
+    "NSCLC": "dataset_csv/NSCLC.csv",
+    "LUAD_EGFR": "dataset_csv/LUAD_EGFR.csv",
+    "LUAD_TP53": "dataset_csv/LUAD_TP53.csv",
+    "COAD_READ_molecular": "dataset_csv/COAD_READ_molecular_subtyping.csv",
     # ......
 }
-
-
-def adapt_root(args):
-    if socket.gethostname().startswith("eez"):
-        args.root = args.root.replace("/ssd/Pathology/", "/home/ycaibt/PathBench_v1/")
-        args.csv_file = os.path.join("/nfs/dataset/pathology/PathBench_v1/split_files/", os.path.basename(args.csv_file))
-    return args
 
 
 def parse_args():
@@ -48,8 +44,6 @@ def parse_args():
     args = parser.parse_args()
 
     args.csv_file = SPLIT_CSV[args.study]
-
-    args = adapt_root(args)
 
     return args
 
@@ -86,7 +80,5 @@ def aps_parse_args():
     args = parser.parse_args()
 
     args.csv_file = SPLIT_CSV[args.study]
-
-    args = adapt_root(args)
 
     return args

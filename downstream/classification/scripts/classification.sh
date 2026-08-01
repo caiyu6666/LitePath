@@ -1,6 +1,8 @@
-ROOT_WSI="/ssd/Pathology/Patches/Nanfang_Lung_Cohort1/pt_files,/ssd/Pathology/Patches/Nanfang_Lung_Hebeisiyuan/pt_files,/ssd/Pathology/Patches/Nanfang_Lung_Cohort2/pt_files,/ssd/Pathology/Patches/Nanfang_Lung_Cancerous/pt_files,/ssd/Pathology/Patches/Nanfang_Lung_cancerVSbenign/pt_files,/ssd/Pathology/Patches/Nanfang_Lung_Frozen/pt_files,/ssd/Pathology/Patches/Zhefuyi_Lung/pt_files,/ssd/Pathology/Patches/Nanfang_Lung_Prospective/pt_files,/ssd/Pathology/Patches/Nanfang-Lung-Finegrained/pt_files"
-studies="Nanfang_primary_metastatic Nanfang-Lung-NSCLC Nanfang_lung_finegrained Nanfang-Lung-Frozen-LymphNodeMetastasis Nanfang_lung_P63"
-GPU_LIST="0 1 2 3 4 5 6 7 8"
+PATCH_ROOT="/home/ycaibt/Pathology/Patches"
+ROOT_WSI="${PATCH_ROOT}/TCGA-LUSC/pt_files,${PATCH_ROOT}/TCGA-LUAD/pt_files,${PATCH_ROOT}/CAMELYON16/pt_files,${PATCH_ROOT}/CAMELYON17/pt_files,${PATCH_ROOT}/BRACS/pt_files,${PATCH_ROOT}/TCGA-COAD/pt_files,${PATCH_ROOT}/TCGA-READ/pt_files"
+
+studies="BRACS-3 BRACS-7 CAMELYON NSCLC LUAD_EGFR LUAD_TP53 COAD_READ_molecular"
+GPU_LIST="0 1 2 3 4 5 6 7"
 feature="LiteFM"
 
 seeds=(0 1 2 3 4 5 6 7 8 9)  # 你可以随时修改此列表

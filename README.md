@@ -1,46 +1,37 @@
-![header](https://capsule-render.vercel.app/api?type=waving&height=150&color=gradient&text=LitePath:&fontAlign=12&fontAlignY=25&fontSize=39&desc=A%20Deployment-Friendly%20Foundational%20Framework%20for%20Efficient%20Computational%20Pathology&descAlign=49&descAlignY=48)
+![header](<https://capsule-render.vercel.app/api?type=waving&height=150&color=gradient&text=LitePath:&fontAlign=12&fontAlignY=25&fontSize=39&desc=A%20Deployment-Friendly%20Foundational%20Framework%20for%20Efficient%20Computational%20Pathology&descAlign=49&descAlignY=48>)
 
 [![Arxiv Page](https://img.shields.io/badge/Arxiv-2602.14010-red?style=flat-square)](https://arxiv.org/abs/2602.14010)
 
-We present **LitePath**, a framework designed to mitigate model over-parameterization and patch‑level redundancy. LitePath integrates **LiteFM**, a compact model distilled from three large PFMs (Virchow2, H-Optimus-1 and UNI2) using 190 million patches, and the **Adaptive Patch Selector (APS)**, a lightweight modular component for task-specific patch selection. 
-
+We present **LitePath**, an efficient and scalable pathology foundation model (PFM) framework to facilitate wide adoption of AI-driven precision oncology in computation-constrained clinical practice. LitePath integrates **LiteFM**, a compact model distilled from three large PFMs (Virchow2, H-Optimus-1 and UNI2) using 190 million patches, and the **Adaptive Patch Selector (APS)**, a lightweight modular component for task-specific patch selection, to mitigate model overparameterization and patch-level redundancy.
 
 <div align="center">
   <video src="https://github.com/user-attachments/assets/ca65a19b-c491-4ff2-b851-6dc095baa0ce" width="70%" poster=""> </video>
 </div>
 
-
 ## Features
 
-- ⚡ **High Efficiency in Computational Pathology**</br>
+- ⚡ **High Efficiency in Computational Pathology**
   **28x smaller** and **105x faster** compared to Virchow2.
-
-- 🎯 **State-of-the-Art Accuracy**</br>
+- 🎯 **State-of-the-Art Accuracy**
   Deliver performance on par with leading pathology foundation models, maintaining a **99.71% average AUC retention** compared to Virchow2.
-
-- 🌍 **Friendly for Edge Deployment**</br>
+- 🌍 **Friendly for Edge Deployment**
   Easily deployable on various edge devices, such as NVIDIA Jetson Orin Nano Super with **25W rated power**.
-
-
 
 <p align="center"><img width=100% src="./figs/deployment.png"></p>
 
-
 <p align="center"><img width=100% src="./figs/rank_all_horizon.svg"></p>
-
-
 
 ## Project Structure
 
 ```
 LitePath/
-├── distillation/          # Knowledge distillation training of LiteFM
-├── diagnosis_prediction/  # Downstream task training and evaluation
-├── inference/            # Deployment and inference
+├── distillation/              # Knowledge distillation training of LiteFM
+├── downstream/
+│   ├── classification/        # Classification training and evaluation
+│   └── survival/              # Survival training and evaluation
+├── inference/                 # Deployment and inference
 └── README.md
 ```
-
-
 
 ## Requirements
 
@@ -71,14 +62,12 @@ pip install -r requirements.txt
 - **Deep Learning**: timm==1.0.15, pytorch-lightning==2.4.0, torchmetrics==1.6.0
 - **Computer Vision**: opencv-python==4.10.0.84, Pillow==9.5.0
 - **WSI Processing**: [ASlide](https://github.com/MrPeterJin/ASlide) (from GitHub)
-- **Data Processing**: numpy==2.2.6, pandas==2.2.3, h5py==3.13.0, lmdb>=1.4.0
-- **Machine Learning**: scikit-learn==1.7.0, scipy==1.14.1
+- **Data Processing**: numpy==2.2.6, pandas==2.2.3, h5py==3.13.0, lmdb>=1.4.0, openpyxl==3.1.5
+- **Machine Learning**: scikit-learn==1.7.0, scikit-survival==0.25.0, scipy==1.14.1
 - **Experiment Tracking**: wandb==0.18.7
 - **Hugging Face**: huggingface-hub==0.36.0, transformers==4.50.3
 
 For the complete list of dependencies, see [requirements.txt](./requirements.txt).
-
-
 
 ## Quick Start
 
@@ -97,7 +86,6 @@ cd inference/
 unzip ../ckpts.zip
 unzip ../examples.zip
 ```
-
 
 ### Lightweight Patch Feature Extractor
 
@@ -118,11 +106,9 @@ print(feat.shape)
 
 To learn how to use the LitePath framework in a practical case, refer to the provided Jupyter Notebook: [example.ipynb](./inference/example.ipynb).
 
-
-
 ## Usage
 
-### Stage 1: Distillation Pretraining of LiteFM
+### Distillation Pretraining of LiteFM
 
 **Navigate to the `distillation` directory:**
 
@@ -153,14 +139,18 @@ sbatch slurm/model_training/litefm.slurm
 
 - `configs/litefm.yaml` contains hyperparameters and training configuration. Modify it as needed to fit your setup.
 
+### Downstream Tasks
 
+Classification and survival are two parallel downstream tasks. Choose the workflow that matches your target.
 
-### Stage 2: ABMIL Training and Evaluation
+#### Classification
 
-**Navigate to the `diagnosis_prediction` directory:**
+##### ABMIL Training and Evaluation
+
+**Navigate to the classification directory:**
 
 ```bash
-cd diagnosis_prediction/
+cd downstream/classification/
 ```
 
 **1. Use [PrePath](https://github.com/birkhoffkiki/PrePATH) to extract the `LiteFM` features required for training and evaluation. (Our model has been integrated into PrePath.)**
@@ -177,14 +167,12 @@ bash scripts/classification.sh
 bash scripts/topk.sh
 ```
 
+##### APS Training and Evaluation
 
-
-### Stage 3: APS Training and Evaluation
-
-**Navigate to the `diagnosis_prediction` directory:**
+**Navigate to the classification directory:**
 
 ```bash
-cd diagnosis_prediction/
+cd downstream/classification/
 ```
 
 **1. Use [PrePath](https://github.com/birkhoffkiki/PrePATH) to extract the `LiteFM-block0` features. Here, `LiteFM-block0` refers to the intermediate shallow features from the first Transformer block**
@@ -211,24 +199,63 @@ bash scripts/aps.sh
 
 (The code will automatically scan the well-trained `ckpt` and `json` files)
 
+#### Survival
 
+The survival workflow supports five-fold evaluation.
+
+**Navigate to the survival directory:**
+
+```bash
+cd downstream/survival/
+```
+
+##### ABMIL Training and Evaluation
+
+**1. Use [PrePath](https://github.com/birkhoffkiki/PrePATH) to extract the `LiteFM` features required for training and evaluation. (Our model has been integrated into PrePath.)**
+
+**2. Train and evaluate ABMIL**
+
+```bash
+bash scripts/survival.sh
+```
+
+**3. Optional: Ablation on inference with partial patches (topk & uniformk)**
+
+```bash
+bash scripts/topk.sh
+```
+
+##### APS Training and Evaluation
+
+**1. Use [PrePath](https://github.com/birkhoffkiki/PrePATH) to extract the `LiteFM-block0` features. Here, `LiteFM-block0` refers to the intermediate shallow features from the first Transformer block**
+
+**2. Grid search the optimal selection number for each task**
+
+```bash
+bash scripts/aps_gridsearch.sh
+```
+
+**3. Update the optimal selection number in `datasets/selection.json`.**
+
+**4. Train and evaluate APS with the configuration in `selection.json`**
+
+```bash
+bash scripts/aps.sh
+```
 
 ## Model Variants
 
-| **Model Name**           | **Backbone** | **#Params.** | **Teachers**                |
-| ------------------------ | ------------ | ------------ | --------------------------- |
-| **LiteFM (Recommended)** | ViT-S        | 22.06M       | Virchow2, H-Optimus-1, UNI2 |
-| LiteFM-L                 | ViT-B        | 86.59M       | Virchow2, H-Optimus-1, UNI2 |
-| LiteVirchow2             | ViT-S        | 22.06M       | Virchow2                    |
-| LiteFM-S                 | ViT-Ti       | 5.72M        | Virchow2, H-Optimus-1, UNI2 |
+| **Model Name**           | **Backbone** | **#Params.** | **Teachers**          |
+| ------------------------------ | ------------------ | ------------------ | --------------------------- |
+| **LiteFM (Recommended)** | ViT-S              | 22.06M             | Virchow2, H-Optimus-1, UNI2 |
+| LiteFM-L                       | ViT-B              | 86.59M             | Virchow2, H-Optimus-1, UNI2 |
+| LiteVirchow2                   | ViT-S              | 22.06M             | Virchow2                    |
+| LiteFM-S                       | ViT-Ti             | 5.72M              | Virchow2, H-Optimus-1, UNI2 |
 
 <p align="center"><img width=100% src="./figs/lite_family_rank.svg"></p>
-
-
 
 ## Acknowledgements
 
 The work was built on top of repositories including: [ASlide](https://github.com/MrPeterJin/ASlide), [PrePath](https://github.com/birkhoffkiki/PrePATH), [mSTAR](https://github.com/Innse/mSTAR), [GPFM](https://github.com/birkhoffkiki/GPFM). We thank the original authors for their excellent work!
 
 If any questions, feel free to email [Yu Cai](mailto:yu.cai@connect.ust.hk)
-

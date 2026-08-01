@@ -27,5 +27,13 @@
     "ARGO-TNM_N0_N+": "0_1000",
     "ARGO-TNM_T1+T2_T3+T4": "0_2000",
     "ARGO-TNM_T1_T4": "0_1000",
-    "argo_colon_deep_cms": "0_2000"
+    "argo_colon_deep_cms": "0_2000",
+
+    "BRACS-3": "0_2000",
+    "BRACS-7": "0_3000",
+    "CAMELYON": "100_1900",
+    "NSCLC": "100_1900",
+    "LUAD_EGFR": "0_2000",
+    "LUAD_TP53": "0_3000",
+    "COAD_READ_molecular": "100_3900"
 }

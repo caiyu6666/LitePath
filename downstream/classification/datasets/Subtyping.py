@@ -1,11 +1,14 @@
 import os
-from re import S
 import pandas as pd
-import socket
-from tqdm import tqdm
 
 import torch
 import torch.utils.data as data
+
+
+def read_split_table(path):
+    if str(path).lower().endswith(".csv"):
+        return pd.read_csv(path)
+    return pd.read_excel(path)
 
 
 class Dataset_Subtyping(data.Dataset):
@@ -17,14 +20,10 @@ class Dataset_Subtyping(data.Dataset):
         else:
             self.root = [root]
 
-        # TODO: data root
-        if socket.gethostname() == "jhcpu6":
-            self.root = [root.replace("/ssd/", "/jhcnas1/caiyu/") for root in self.root]
         print(self.root)
 
         self.csv_file = csv_file
-        # self.data = pd.read_csv(csv_file)
-        self.data = pd.read_excel(csv_file)
+        self.data = read_split_table(csv_file)
         # if there is only one fold, then it is a fixed split
         if "split" in self.data.columns:
             self.split = "fixed"
@@ -137,7 +136,7 @@ class Dataset_Subtyping_Selected(data.Dataset):
         print(f"=> load selected features from {selected_feat_path}")
 
         self.csv_file = csv_file
-        self.data = pd.read_excel(csv_file)
+        self.data = read_split_table(csv_file)
 
         # convert "label" column to discrete values
         self.data["label"] = pd.Categorical(self.data["label"])
@@ -181,17 +180,13 @@ class Dataset_Subtyping_with_Att_Score(data.Dataset):
         else:
             self.root = [root]
 
-        # TODO: data root
-        if socket.gethostname() == "jhcpu6":
-            self.root = [root.replace("/ssd/", "/jhcnas1/caiyu/") for root in self.root]
         print(self.root)
 
         self.pred_score = torch.load(os.path.join(self.att_score_dir, "pred_score.pt"), weights_only=True)
         print(f"=> load pred_score from {self.att_score_dir}")
 
         self.csv_file = csv_file
-        # self.data = pd.read_csv(csv_file)
-        self.data = pd.read_excel(csv_file)
+        self.data = read_split_table(csv_file)
         # if there is only one fold, then it is a fixed split
         if "split" in self.data.columns:
             self.split = "fixed"
@@ -292,4 +287,3 @@ class Dataset_Subtyping_with_Att_Score(data.Dataset):
 
     def __len__(self):
         return len(self.cases)
-        

@@ -1,11 +1,14 @@
 import os
-from re import S
 import pandas as pd
-import socket
-from tqdm import tqdm
 
 import torch
 import torch.utils.data as data
+
+
+def read_split_table(path):
+    if str(path).lower().endswith(".csv"):
+        return pd.read_csv(path)
+    return pd.read_excel(path)
 
 
 class Dataset_APS(data.Dataset):
@@ -22,12 +25,8 @@ class Dataset_APS(data.Dataset):
         else:
             self.root = [root]
 
-        # TODO: data root
-        if socket.gethostname() == "jhcpu6":
-            self.root = [root.replace("/ssd", "/jhcnas1/caiyu") for root in self.root]
-
         self.csv_file = csv_file
-        self.data = pd.read_excel(csv_file)
+        self.data = read_split_table(csv_file)
 
         example_feature = os.path.splitext(str(self.data["slide"].values[0]).split("/")[0])[0] + ".pt"
         for root in self.root:
