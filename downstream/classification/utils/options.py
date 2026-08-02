@@ -3,13 +3,13 @@ import argparse
 
 SPLIT_CSV = {
     # Public
-    "BRACS-3": "dataset_csv/BRACS-3.csv",
-    "BRACS-7": "dataset_csv/BRACS-7.csv",
-    "CAMELYON": "dataset_csv/Camelyon.csv",
-    "NSCLC": "dataset_csv/NSCLC.csv",
-    "LUAD_EGFR": "dataset_csv/LUAD_EGFR.csv",
-    "LUAD_TP53": "dataset_csv/LUAD_TP53.csv",
-    "COAD_READ_molecular": "dataset_csv/COAD_READ_molecular_subtyping.csv",
+    "BRACS-3": "dataset_split/BRACS-3.csv",
+    "BRACS-7": "dataset_split/BRACS-7.csv",
+    "CAMELYON": "dataset_split/Camelyon.csv",
+    "NSCLC": "dataset_split/NSCLC.csv",
+    "LUAD_EGFR": "dataset_split/LUAD_EGFR.csv",
+    "LUAD_TP53": "dataset_split/LUAD_TP53.csv",
+    "COAD_READ_molecular": "dataset_split/COAD_READ_molecular_subtyping.csv",
     # ......
 }
 

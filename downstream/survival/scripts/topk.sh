@@ -4,7 +4,6 @@ model="ABMIL"
 entry="main_eval_topk.py"
 tasks=(
     "LUAD_survival"
-    "LUSC_survival"
     "CRC_survival"
     "HNSC_survival"
     "SKCM_survival"
@@ -18,7 +17,6 @@ max_parallel=10
 pt_roots=$(cat <<EOF
 {
   "TCGA-LUAD": "/home/ycaibt/Pathology/Patches/TCGA-LUAD/pt_files/${feature}/",
-  "TCGA-LUSC": "/home/ycaibt/Pathology/Patches/TCGA-LUSC/pt_files/${feature}/",
   "TCGA-COAD": "/home/ycaibt/Pathology/Patches/TCGA-COAD/pt_files/${feature}/",
   "TCGA-READ": "/home/ycaibt/Pathology/Patches/TCGA-READ/pt_files/${feature}/",
   "TCGA-HNSC": "/home/ycaibt/Pathology/Patches/TCGA-HNSC/pt_files/${feature}/",

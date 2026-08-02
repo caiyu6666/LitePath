@@ -4,7 +4,6 @@ model="ABMIL"
 entry="main_kfold.py"
 tasks=(
     "LUAD_survival"
-    "LUSC_survival"
     "CRC_survival"
     "HNSC_survival"
     "SKCM_survival"
@@ -21,7 +20,6 @@ for feature in "${features[@]}"; do
     pt_roots=$(cat <<EOF
 {
   "TCGA-LUAD": "/home/ycaibt/Pathology/Patches/TCGA-LUAD/pt_files/${feature}/",
-  "TCGA-LUSC": "/home/ycaibt/Pathology/Patches/TCGA-LUSC/pt_files/${feature}/",
   "TCGA-COAD": "/home/ycaibt/Pathology/Patches/TCGA-COAD/pt_files/${feature}/",
   "TCGA-READ": "/home/ycaibt/Pathology/Patches/TCGA-READ/pt_files/${feature}/",
   "TCGA-HNSC": "/home/ycaibt/Pathology/Patches/TCGA-HNSC/pt_files/${feature}/",
