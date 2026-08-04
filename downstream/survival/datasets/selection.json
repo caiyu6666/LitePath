@@ -2,6 +2,5 @@
   "CRC_survival": "0_1000",
   "HNSC_survival": "0_2000",
   "LUAD_survival": "50_2950",
-  "LUSC_survival": "0_1000",
   "SKCM_survival": "50_950"
 }

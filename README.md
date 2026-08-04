@@ -253,8 +253,8 @@ bash scripts/aps.sh
 | LiteFM-S                       | ViT-Ti             | 5.72M              | Virchow2, H-Optimus-1, UNI2 |
 
 <p align="center">
-<img width="49%" src="./figs/cls_comparison.svg">
-<img width="49%" src="./figs/survival_comparison.svg">
+<img width="100%" src="./figs/cls_comparison.svg">
+<img width="100%" src="./figs/survival_comparison.svg">
 </p>
 
 ## Acknowledgements
