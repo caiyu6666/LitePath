@@ -1,0 +1,8 @@
+{
+  "slides": [
+    {
+      "slide_id": "example_slide",
+      "wsi_path": "/path/to/example_slide.svs"
+    }
+  ]
+}

@@ -10,11 +10,11 @@ We present **LitePath**, an efficient and scalable pathology foundation model (P
 
 ## Features
 
-- ⚡ **High Efficiency in Computational Pathology**
+- ⚡ **High Efficiency in Computational Pathology.**
   **28x smaller** and **105x faster** compared to Virchow2.
-- 🎯 **State-of-the-Art Accuracy**
+- 🎯 **State-of-the-Art Accuracy.**
   Deliver performance on par with leading pathology foundation models, maintaining a **99.71% average AUC retention** compared to Virchow2.
-- 🌍 **Friendly for Edge Deployment**
+- 🌍 **Friendly for Edge Deployment.**
   Easily deployable on various edge devices, such as NVIDIA Jetson Orin Nano Super with **25W rated power**.
 
 <p align="center"><img width=100% src="./figs/deployment.png"></p>
@@ -105,6 +105,31 @@ print(feat.shape)
 ### Efficient PFM framework
 
 To learn how to use the LitePath framework in a practical case, refer to the provided Jupyter Notebook: [example.ipynb](./inference/example.ipynb).
+
+### Real-WSI latency profiling
+
+The profiling utility separates one-time WSI preprocessing from inference on a reusable packed-HDF5 cache. First prepare the input manifest:
+
+```bash
+cd inference
+cp benchmark_manifest.example.json benchmark_manifest.json
+# Edit benchmark_manifest.json to point to the WSI files.
+```
+
+Run preprocessing once on the device being profiled:
+
+```bash
+bash run_benchmark_preprocess.sh rtx3090
+# or: bash run_benchmark_preprocess.sh jetson
+```
+
+Then benchmark LitePath-APS, LitePath-Uniform-2000, LiteFM-Full and Virchow2-Full using the same prepared cache:
+
+```bash
+bash run_benchmark_rtx3090.sh
+# or, on Jetson:
+bash run_benchmark_jetson.sh
+```
 
 ## Usage
 
