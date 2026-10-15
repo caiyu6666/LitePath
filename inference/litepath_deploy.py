@@ -79,6 +79,8 @@ class ModelDeployment:
         if attention_loader is not None:
             attention_features = self.infer_feat_selection(attention_loader)
             print(f"Attention features shape: {attention_features.shape}, time cost: {time.time() - t0}")
+        else:
+            attention_features = None
 
         if uniform_features is not None and attention_features is not None:
             features_all = torch.cat([uniform_features, attention_features], dim=0)
